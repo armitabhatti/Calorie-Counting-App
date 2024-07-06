@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+    
+    var body: some View{
+        TabView{
+            FridgeView()
+                .environment(\.managedObjectContext, GroceriesProvider.shared.viewContext)
+                .tabItem { Label("fridge", systemImage: "carrot")
+                }
+            DailyGroceriesView()
+                .environment(\.managedObjectContext, GroceriesProvider.shared.viewContext)
+                .tabItem { Label("daily log", systemImage: "sun.and.horizon")
+                }
         }
-        .padding()
+        
     }
-}
-
-#Preview {
-    ContentView()
 }
